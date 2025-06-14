@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+        .active-tab { color: #16a34a; }
+        .inactive-tab { color: #6b7280; }
+        .emoji { font-size: 2rem; }
+        .service-icon { font-size: 1.5rem; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-md mx-auto bg-gray-50 min-h-screen">
+        <!-- Header -->
+        <div class="bg-green-600 text-white p-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold">Therapy</h1>
+            <button onclick="toggleMenu()" id="menuBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-green-700 text-white p-4 space-y-2">
+            <button onclick="showTab('home')" class="block w-full text-left py-2">Início</button>
+            <button onclick="showTab('servicos')" class="block w-full text-left py-2">Serviços</button>
+            <button onclick="showTab('agendamento')" class="block w-full text-left py-2">Agendamento</button>
+            <button onclick="showTab('contato')" class="block w-full text-left py-2">Contato</button>
+        </div>
+
+        <!-- Content -->
+        <div class="p-4 pb-20">
+            <!-- Home Tab -->
+            <div id="homeTab" class="tab-content">
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-2">Bem-vindo à Nossa Clínica</h2>
+                        <p class="text-green-100">Medicina Tradicional Chinesa com mais de 10 anos de experiência</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="w-8 h-8 text-green-600 mx-auto mb-2">🏥</div>
+                            <h3 class="font-semibold text-gray-800">Tratamentos</h3>
+                            <p class="text-sm text-gray-600">Naturais e Eficazes</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div class="w-8 h-8 text-yellow-500 mx-auto mb-2">⭐</div>
+                            <h3 class="font-semibold text-gray-800">Qualidade</h3>
+                            <p class="text-sm text-gray-600">Atendimento 5 Estrelas</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Nossos Serviços</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🪡</span>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Acupuntura</h4>
+                                        <p class="text-sm text-gray-600">R$ 80 • 60 min</p>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400">›</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">👐</span>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Massagem Terapêutica</h4>
+                                        <p class="text-sm text-gray-600">R$ 100 • 90 min</p>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400">›</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🫖</span>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Ventosaterapia</h4>
+                                        <p class="text-sm text-gray-600">R$ 70 • 45 min</p>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400">›</span>
+                            </div>
+                        </div>
+                        <button onclick="showTab('servicos')" class="w-full mt-4 bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Ver Todos os Serviços
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Tab -->
+            <div id="servicosTab" class="tab-content hidden">
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Nossos Tratamentos</h2>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🪡</span>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Acupuntura</h3>
+                                    <p class="text-green-600 font-medium">R$ 80 • 60 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Tratamento com agulhas para equilibrar a energia vital</p>
+                        <button onclick="selectService('Acupuntura')" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Agendar Consulta
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">👐</span>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Massagem Terapêutica</h3>
+                                    <p class="text-green-600 font-medium">R$ 100 • 90 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Técnicas orientais para relaxamento e cura</p>
+                        <button onclick="selectService('Massagem Terapêutica')" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Agendar Consulta
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🫖</span>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Ventosaterapia</h3>
+                                    <p class="text-green-600 font-medium">R$ 70 • 45 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Terapia com ventosas para desintoxicação</p>
+                        <button onclick="selectService('Ventosaterapia')" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Agendar Consulta
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🌿</span>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Fitoterapia</h3>
+                                    <p class="text-green-600 font-medium">R$ 90 • 60 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Consulta e prescrição de ervas medicinais</p>
+                        <button onclick="selectService('Fitoterapia')" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Agendar Consulta
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🔥</span>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Moxabustão</h3>
+                                    <p class="text-green-600 font-medium">R$ 60 • 45 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Aquecimento de pontos específicos com artemísia</p>
+                        <button onclick="selectService('Moxabustão')" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Agendar Consulta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Tab -->
+            <div id="agendamentoTab" class="tab-content hidden">
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Agendar Consulta</h2>
+                    
+                    <div id="selectedServiceInfo" class="hidden bg-green-50 p-4 rounded-lg border border-green-200">
+                        <div class="flex items-center">
+                            <span id="selectedServiceIcon" class="text-2xl mr-3"></span>
+                            <div>
+                                <h3 id="selectedServiceName" class="font-semibold text-gray-800"></h3>
+                                <p id="selectedServicePrice" class="text-green-600"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                            <input type="text" id="nome" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                            <input type="tel" id="telefone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Serviço</label>
+                            <select id="servico" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="">Selecione um serviço</option>
+                                <option value="Acupuntura">Acupuntura - R$ 80</option>
+                                <option value="Massagem Terapêutica">Massagem Terapêutica - R$ 100</option>
+                                <option value="Ventosaterapia">Ventosaterapia - R$ 70</option>
+                                <option value="Fitoterapia">Fitoterapia - R$ 90</option>
+                                <option value="Moxabustão">Moxabustão - R$ 60</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Data Preferida</label>
+                                <input type="date" id="data" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Horário</label>
+                                <select id="horario" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                    <option value="">Selecione</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
+                            <textarea id="observacoes" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Conte-nos sobre seus sintomas ou necessidades específicas..."></textarea>
+                        </div>
+
+                        <button onclick="submitForm()" class="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            Solicitar Agendamento
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Tab -->
+            <div id="contatoTab" class="tab-content hidden">
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Contato</h2>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-green-600 mr-3">📞</span>
+                            <div>
+                                <p class="font-medium text-gray-800">(98) 98841-0036</p>
+                                <p class="text-sm text-gray-600">WhatsApp disponível</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-green-600 mr-3">✉️</span>
+                            <div>
+                                <p class="font-medium text-gray-800">therapy.deliverybr@gmail.com</p>
+                                <p class="text-sm text-gray-600">Resposta em até 24h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <span class="text-green-600 mr-3 mt-1">📍</span>
+                            <div>
+                                <p class="font-medium text-gray-800">Barreirinhas - MA</p>
+                                <p class="text-sm text-gray-600">São Luís - MA</p>
+                                <p class="text-sm text-gray-600">CEP: 65110-000 - 65159-000</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="text-green-600 mr-3">🕐</span>
+                            <div>
+                                <p class="font-medium text-gray-800">Horário de Funcionamento</p>
+                                <p class="text-sm text-gray-600">Segunda a Sexta: 8h às 18h</p>
+                                <p class="text-sm text-gray-600">Sábado: 8h às 12h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Depoimentos</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="flex mr-2">
+                                        <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                                    </div>
+                                    <span class="font-medium text-gray-800">Maria Silva</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">"Excelente profissional! A acupuntura me ajudou muito com as dores nas costas."</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="flex mr-2">
+                                        <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                                    </div>
+                                    <span class="font-medium text-gray-800">João Santos</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">"Tratamento muito eficaz. Recomendo para todos que buscam medicina natural."</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="flex mr-2">
+                                        <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                                    </div>
+                                    <span class="font-medium text-gray-800">Ana Costa</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">"Atendimento humanizado e resultados incríveis. Muito obrigada!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200">
+            <div class="flex justify-around py-2">
+                <button onclick="showTab('home')" id="homeBtn" class="flex flex-col items-center py-2 px-4 active-tab">
+                    <span class="text-xl">👤</span>
+                    <span class="text-xs mt-1">Início</span>
+                </button>
+                <button onclick="showTab('servicos')" id="servicosBtn" class="flex flex-col items-center py-2 px-4 inactive-tab">
+                    <span class="text-xl">🏥</span>
+                    <span class="text-xs mt-1">Serviços</span>
+                </button>
+                <button onclick="showTab('agendamento')" id="agendamentoBtn" class="flex flex-col items-center py-2 px-4 inactive-tab">
+                    <span class="text-xl">📅</span>
+                    <span class="text-xs mt-1">Agendar</span>
+                </button>
+                <button onclick="showTab('contato')" id="contatoBtn" class="flex flex-col items-center py-2 px-4 inactive-tab">
+                    <span class="text-xl">💬</span>
+                    <span class="text-xs mt-1">Contato</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'home';
+        let isMenuOpen = false;
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.remove('hidden');
+            
+            // Update navigation buttons
+            document.querySelectorAll('#homeBtn, #servicosBtn, #agendamentoBtn, #contatoBtn').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('inactive-tab');
+            });
+            
+            document.getElementById(tabName + 'Btn').classList.remove('inactive-tab');
+            document.getElementById(tabName + 'Btn').classList.add('active-tab');
+            
+            currentTab = tabName;
+            
+            // Close menu if open
+            if (isMenuOpen) {
+                toggleMenu();
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('menuBtn');
+            
+            if (isMenuOpen) {
+                menu.classList.add('hidden');
+                menuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+            } else {
+                menu.classList.remove('hidden');
+                menuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            }
+            
+            isMenuOpen = !isMenuOpen;
+        }
+
+        function selectService(serviceName) {
+            const serviceInfo = {
+                'Acupuntura': { icon: '🪡', price: 'R$ 80 • 60 min' },
+                'Massagem Terapêutica': { icon: '👐', price: 'R$ 100 • 90 min' },
+                'Ventosaterapia': { icon: '🫖', price: 'R$ 70 • 45 min' },
+                'Fitoterapia': { icon: '🌿', price: 'R$ 90 • 60 min' },
+                'Moxabustão': { icon: '🔥', price: 'R$ 60 • 45 min' }
+            };
+            
+            const service = serviceInfo[serviceName];
+            if (service) {
+                document.getElementById('selectedServiceInfo').classList.remove('hidden');
+                document.getElementById('selectedServiceIcon').textContent = service.icon;
+                document.getElementById('selectedServiceName').textContent = serviceName;
+                document.getElementById('selectedServicePrice').textContent = service.price;
+                document.getElementById('servico').value = serviceName;
+            }
+            
+            showTab('agendamento');
+        }
+
+        function submitForm() {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+            const observacoes = document.getElementById('observacoes').value;
+            
+            if (!nome || !telefone || !email || !servico || !data || !horario) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Criar mensagem para WhatsApp
+            const mensagem = `Olá! Gostaria de agendar uma consulta:
+
+👤 Nome: ${nome}
+📱 Telefone: ${telefone}
+📧 Email: ${email}
+🏥 Serviço: ${servico}
+📅 Data: ${data}
+🕐 Horário: ${horario}
+📝 Observações: ${observacoes || 'Nenhuma'}`;
+            
+            // Substituir pelo seu número de WhatsApp
+            const numeroWhatsApp = '5598988410036';
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            
+            // Abrir WhatsApp
+            window.open(urlWhatsApp, '_blank');
+            
+            // Limpar formulário
+            document.getElementById('nome').value = '';
+            document.getElementById('telefone').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('servico').value = '';
+            document.getElementById('data').value = '';
+            document.getElementById('horario').value = '';
+            document.getElementById('observacoes').value = '';
+            
+            // Esconder info do serviço selecionado
+            document.getElementById('selectedServiceInfo').classList.add('hidden');
+            
+            alert('Redirecionando para o WhatsApp...');
+        }
+    </script>
+</body>
+</html>
